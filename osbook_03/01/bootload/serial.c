@@ -79,7 +79,7 @@ int serial_init(int index){
 
 //送信可能か？
 int serial_is_send_enable(int index){
-    volatile struct h8_3069f_sci *sci = reg[index].sci;
+    volatile struct h8_3069f_sci *sci = regs[index].sci;
     return (sci->ssr & H8_3069F_SCI_SSR_TDRE);
 }
 
@@ -95,3 +95,4 @@ int serial_send_byte(int index, unsigned char c){
 
     return 0;    
 }
+
