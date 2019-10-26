@@ -17,7 +17,7 @@ void *memcpy(void *dst, const void *src, long len){
     return dst;
 }
 
-int memcmp(const void *bl, const void *b2, long len){
+int memcmp(const void *b1, const void *b2, long len){
     const char *p1 = b1, *p2 = b2;
     for (; len > 0; len--){
         if (*p1 != *p2)
@@ -105,3 +105,4 @@ int putxval(unsigned long value, int column){
 
     return 0;
 }
+
