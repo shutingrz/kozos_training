@@ -1,6 +1,7 @@
 #include "defines.h"
 #include "serial.h"
 #include "xmodem.h"
+#include "elf.h"
 #include "lib.h"
 
 static int init(void){

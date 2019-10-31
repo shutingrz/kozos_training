@@ -20,7 +20,7 @@ struct elf_header {
     long section_header_offset;
     long flags;
     short header_size;
-    short program_header_seize;
+    short program_header_size;
     short program_header_num;
     short section_header_size;
     short section_header_num;
@@ -67,7 +67,7 @@ static int elf_load_program(struct elf_header *header){
 
     for (i = 0; i < header->program_header_num; i++){
         //プログラムヘッダを取得
-        phdr = (static elf_program_header *)
+        phdr = (struct elf_program_header *)
             ((char *) header + header->program_header_offset +
             header->program_header_size * i);
         
