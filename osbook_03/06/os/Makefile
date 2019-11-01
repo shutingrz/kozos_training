@@ -13,6 +13,9 @@ OBJDUMP = $(BINDIR)/$(ADDNAME)objdump
 RANLIB  = $(BINDIR)/$(ADDNAME)ranlib
 STRIP   = $(BINDIR)/$(ADDNAME)strip
 
+XMODEM = ../../tools/kz_xmodem/kz_xmodem
+XMODEM_SERDEV = /dev/ttyUSB0
+
 OBJS  = startup.o main.o
 OBJS += lib.o serial.o
 
@@ -42,6 +45,8 @@ $(TARGET) :	$(OBJS)
 
 .s.o :		$<
 		$(CC) -c $(CFLAGS) $<
+load :		$(TARGET)
+	$(XMODEM) $(TARGET) $(XMODEM_SERDEV)
 
 clean :
 		rm -f $(OBJS) $(TARGET) $(TARGET).elf
