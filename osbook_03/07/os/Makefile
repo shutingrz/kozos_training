@@ -16,7 +16,7 @@ STRIP   = $(BINDIR)/$(ADDNAME)strip
 XMODEM = ../../tools/kz_xmodem/kz_xmodem
 XMODEM_SERDEV = /dev/ttyUSB0
 
-OBJS  = startup.o main.o
+OBJS  = startup.o main.o interrupt.o
 OBJS += lib.o serial.o
 
 TARGET = kozos
@@ -32,6 +32,7 @@ LFLAGS = -static -T ld.scr -L.
 
 .SUFFIXES: .c .o
 .SUFFIXES: .s .o
+.SUFFIXES: .S .o
 
 all :		$(TARGET)
 
@@ -45,6 +46,10 @@ $(TARGET) :	$(OBJS)
 
 .s.o :		$<
 		$(CC) -c $(CFLAGS) $<
+
+.S.o :		$<
+		$(CC) -c $(CFLAGS) $<
+
 load :		$(TARGET)
 	$(XMODEM) $(TARGET) $(XMODEM_SERDEV)
 
