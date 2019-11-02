@@ -2,12 +2,6 @@
 #include "serial.h"
 #include "lib.h"
 
-/**
- * @brief memset
- * @param b 書き込み先アドレス
- * @param c 書き込むデータ
- * @param len 長さ 
-**/
 void *memset(void *b, int c, long len){
     char *p;
     for (p = b; len > 0; len--)
@@ -15,12 +9,6 @@ void *memset(void *b, int c, long len){
     return b;
 }
 
-/**
- * @brief memcpy
- * @param dst コピー先アドレス
- * @param src コピー元アドレス
- * @param len 長さ
-**/
 void *memcpy(void *dst, const void *src, long len){
     char *d = dst;
     const char *s = src;
@@ -29,13 +17,6 @@ void *memcpy(void *dst, const void *src, long len){
     return dst;
 }
 
-/**
- * @brief メモリの内容を比較
- * @param b1 比較元
- * @param b2 比較先
- * @param len 比較する長さ
- * @return 最後に一致した長さ. 0は一致しなかったとき
-**/
 int memcmp(const void *b1, const void *b2, long len){
     const char *p1 = b1, *p2 = b2;
     for (; len > 0; len--){
