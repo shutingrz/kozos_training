@@ -82,6 +82,7 @@ int strncmp(const char *s1, const char *s2, int len){
             return (*s1 > *s2) ? 1 : -1;
         s1++;
         s2++;
+        len--;
     }
     return 0;
 }
