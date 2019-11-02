@@ -13,23 +13,17 @@ OBJDUMP = $(BINDIR)/$(ADDNAME)objdump
 RANLIB  = $(BINDIR)/$(ADDNAME)ranlib
 STRIP   = $(BINDIR)/$(ADDNAME)strip
 
-H8WRITE = ../../tools/h8write/h8write
+OBJS  = startup.o main.o
+OBJS += lib.o serial.o
 
-# FreeBSD-4.x:/dev/cuaaX, FreeBSD-6.x:/dev/cuadX, FreeBSD(USB):/dev/cuaUx
-# Linux:/dev/ttySx, Linux(USB):/dev/ttyUSBx, Windows:comX
-H8WRITE_SERDEV = /dev/ttyUSB0
-
-OBJS  = vector.o startup.o main.o
-OBJS += lib.o serial.o xmodem.o elf.o
-
-TARGET = kzload
+TARGET = kozos
 
 CFLAGS = -Wall -mh -nostdinc -nostdlib -fno-builtin
 #CFLAGS += -mint32 # intを32ビットにすると掛算／割算ができなくなる
 CFLAGS += -I.
 #CFLAGS += -g
 CFLAGS += -Os
-CFLAGS += -DKZLOAD
+CFLAGS += -DKOZOS
 
 LFLAGS = -static -T ld.scr -L.
 
@@ -49,13 +43,5 @@ $(TARGET) :	$(OBJS)
 .s.o :		$<
 		$(CC) -c $(CFLAGS) $<
 
-$(TARGET).mot :	$(TARGET)
-		$(OBJCOPY) -O srec $(TARGET) $(TARGET).mot
-
-image :		$(TARGET).mot
-
-write :		$(TARGET).mot
-		$(H8WRITE) -3069 -f20 $(TARGET).mot $(H8WRITE_SERDEV)
-
 clean :
-		rm -f $(OBJS) $(TARGET) $(TARGET).elf $(TARGET).mot
+		rm -f $(OBJS) $(TARGET) $(TARGET).elf
