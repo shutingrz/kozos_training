@@ -16,6 +16,11 @@ STRIP   = $(BINDIR)/$(ADDNAME)strip
 XMODEM = ../../tools/kz_xmodem/kz_xmodem
 XMODEM_SERDEV = /dev/ttyUSB0
 
+CONSOLE = /usr/bin/screen
+CONSOLE_SERDEV = $(XMODEM_SERDEV)
+CONSOLE_BAUDRATE = 9600
+
+
 OBJS  = startup.o main.o interrupt.o
 OBJS += lib.o serial.o
 
@@ -55,6 +60,9 @@ $(TARGET) :	$(OBJS)
 
 load :		$(TARGET)
 	$(XMODEM) $(TARGET) $(XMODEM_SERDEV)
+
+run :		$(TARGET) | load
+	$(CONSOLE) $(CONSOLE_SERDEV) $(CONSOLE_BAUDRATE)
 
 clean :
 		rm -f $(OBJS) $(TARGET) $(TARGET).elf
