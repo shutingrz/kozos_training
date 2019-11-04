@@ -8,8 +8,8 @@
  * ビット幅固定の整数型
 **/
 typedef unsigned char uint8;
-typedef unsigned char uint16;
-typedef unsigned char uint32;
+typedef unsigned short uint16;
+typedef unsigned long uint32;
 
 typedef uint32 kz_thread_id_t;
 typedef int (*kz_func_t)(int argc, char *argv[]);

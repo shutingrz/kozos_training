@@ -258,6 +258,8 @@ static void thread_intr(softvec_type_t type, unsigned long sp){
     if (handlers[type])
         handlers[type]();
     
+    schedule(); //スレッドのスケジューリング
+
     /**
      * スレッドのディスパッチ
      * (dispatch()の関数の本体は startup.s にあり、アセンブラで記述されている)
