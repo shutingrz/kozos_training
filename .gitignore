@@ -53,6 +53,12 @@ dkms.conf
 .vscode/c_cpp_properties.json
 .vscode/settings.json
 
+# vim swap file
+*.swp
+
+# KOZOS files
 kzload
 kzload.elf
 *.mot
+kozos
+kozos.elf
