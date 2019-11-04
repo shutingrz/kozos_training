@@ -41,7 +41,7 @@ static struct {
 
 static kz_thread *current; //カレントスレッド
 static kz_thread threads[THREAD_NUM]; //タスク・コントロール・ブロック
-static kz_handler_T handlers[SOFTVEC_TYPE_NUM]; //割り込みハンドラ
+static kz_handler_t handlers[SOFTVEC_TYPE_NUM]; //割り込みハンドラ
 
 void dispatch(kz_context *context);
 
@@ -134,7 +134,7 @@ static kz_thread_id_t thread_run(kz_func_t func, char *name,
     *(--sp) = (uint32)thread_end;
 
     //プログラムカウンタを設定する
-    *(--sp) = (uint32)thread_init();
+    *(--sp) = (uint32)thread_init;
 
     *(--sp) = 0; //ER6
     *(--sp) = 0; //ER5

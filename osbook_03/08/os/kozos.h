@@ -20,3 +20,4 @@ void kz_syscall(kz_syscall_type_t type, kz_syscall_param_t *param);
 int test08_1_main(int argc, char *argv[]);
 
 #endif
+
