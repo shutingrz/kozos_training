@@ -381,7 +381,6 @@ void kz_start(kz_func_t func, char *name, int priority, int stacksize,
     **/
     current = NULL;
 
-    readyque.head = readyque.tail = NULL;
     memset(readyque, 0, sizeof(readyque));
     memset(threads,  0, sizeof(threads));
     memset(handlers, 0, sizeof(handlers));

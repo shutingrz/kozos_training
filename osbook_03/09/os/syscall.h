@@ -30,7 +30,7 @@ typedef struct {
             /* empty */
         } exit;
         struct {
-            int re;
+            int ret;
         } wait;
         struct {
             int ret;
