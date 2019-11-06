@@ -38,7 +38,7 @@ static int kzmem_init_pool(kzmem_pool *p) {
     kzmem_block *mp;
     kzmem_block **mpp;
     extern char freearea; //リンカスクリプトで定義される空き領域
-    static char area = &freearea;
+    static char *area = &freearea;
 
     mp = (kzmem_block *)area;
 
@@ -79,7 +79,7 @@ void *kzmem_alloc(int size) {
     for (i = 0; i < MEMORY_AREA_NUM; i++) {
         p = &pool[i];
 
-        if (size <= p->suze - sizeof(kzmem_block)) {
+        if (size <= p->size - sizeof(kzmem_block)) {
             if (p->free == NULL) { //解放済み領域がない（メモリブロック不足)
                 kz_sysdown();
                 return NULL;
