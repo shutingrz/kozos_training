@@ -23,7 +23,7 @@ int kz_setintr(softvec_type_t type, kz_handler_t handler);
 
 // サービスコール
 int kx_wakeup(kz_thread_id_t id);
-void *kz_kmalloc(int size);
+void *kx_kmalloc(int size);
 int kx_kmfree(void *p);
 int kx_send(kz_msgbox_id_t id, int size, char *p);
 
